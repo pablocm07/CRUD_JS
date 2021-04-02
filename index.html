@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CRUD con JavaScript</title>
+  <!-- Bootstrap 4 -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+    integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+  <!-- FontAwesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+    integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w=="
+    crossorigin="anonymous" />
+  <style>
+    .bckg-dark {
+      background: #212529;
+    }
+  </style>
+</head>
+
+<body class="bckg-dark">
+
+  <nav class="navbar navbar-expand-md bg-dark navbar-dark">
+    <!-- Links -->
+    <button class="navbar-toggler text-white" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+      <i class="fas fa-bars"></i>
+    </button>
+
+    <div class="collapse navbar-collapse justify-content-between" id="collapsibleNavbar">
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <a class="nav-link" href="#"><b>Home</b></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#"><b>Movies</b></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#"><b>List</b></a>
+        </li>
+      </ul>
+
+      <form class="form-inline w-100 justify-content-end" action="#">
+        <div class="input-group">
+          <input class="form-control" type="text" placeholder="Search" id="inputFilter">
+          <div class="input-group-append">
+            <button class="btn btn-outline-primary" type="submit" id="btnSearch">Search</button>
+          </div>
+        </div>
+
+      </form>
+
+    </div>
+
+  </nav>
+
+  <div class="container mt-4">
+
+    <div class="row mb-2">
+      <div class="col-6 text-white">
+        <h2>Movie list</h2>
+      </div>
+      <div class="col-6">
+        <button class="btn btn-outline-primary float-right" data-toggle="modal" id="addMovie">
+          Add new
+        </button>
+      </div>
+    </div>
+
+    <div class="table-responsive">
+      <table class="table table-dark table-hover table-borderless text-center" id="tableMovies">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Release year</th>
+            <th>Duration</th>
+            <th>Gender</th>
+            <th>Actors</th>
+            <th></th>
+          </tr>
+        </thead>
+      </table>
+    </div>
+  </div>
+
+  <!-- Modal to add a new movie in list -->
+  <div class="modal fade" id="modalMovie">
+    <div class="modal-dialog">
+      <div class="modal-content bckg-dark text-white">
+
+        <!-- Modal Header -->
+        <div class="modal-header">
+          <h4 class="modal-title">
+            <!-- Modal title -->
+          </h4>
+          <button type="button" class="close text-white" data-dismiss="modal">&times;</button>
+        </div>
+
+        <!-- Modal body -->
+        <div class="modal-body">
+
+          <form action="#" class="needs-validation" novalidate>
+
+            <div class="form-group">
+              <label for="movieName">Name:</label>
+              <input type="text" class="form-control" id="movieName" placeholder="Enter movie name" name="movieName"
+                required>
+              <div class="valid-feedback">Valid.</div>
+              <div class="invalid-feedback">Please fill out this field.</div>
+            </div>
+
+            <div class="form-group">
+              <label for="releaseYear">Release year:</label>
+              <input type="text" class="form-control" id="releaseYear" placeholder="2021" name="releaseYear" required>
+              <div class="valid-feedback">Valid.</div>
+              <div class="invalid-feedback">Please fill out this field.</div>
+            </div>
+
+            <div class="form-group">
+              <label for="duration">Duration:</label>
+              <input type="text" class="form-control" id="duration" placeholder="Enter minutes" name="duration"
+                required>
+              <div class="valid-feedback">Valid.</div>
+              <div class="invalid-feedback">Please fill out this field.</div>
+            </div>
+
+            <div class="form-group">
+              <label for="gender">Gender:</label>
+              <input type="text" class="form-control" id="gender" placeholder="Enter one or more" name="gender"
+                required>
+              <div class="valid-feedback">Valid.</div>
+              <div class="invalid-feedback">Please fill out this field.</div>
+            </div>
+
+            <div class="form-group">
+              <label for="actors">Distribution/Actors:</label>
+              <input type="text" class="form-control" id="actors" placeholder="Enter one or more" name="actors"
+                required>
+              <div class="valid-feedback">Valid.</div>
+              <div class="invalid-feedback">Please fill out this field.</div>
+            </div>
+
+          </form>
+
+        </div>
+
+        <!-- Modal footer -->
+        <div class="modal-footer">
+          <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+          <button type="submit" class="btn btn-primary" id="saveMovie">Save</button>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+
+  <!-- jQuery library -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+  <!-- Popper JS -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+
+  <!-- Latest compiled JavaScript -->
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+  <!-- JS Code -->
+  <script src="./js/index.js" type="module"></script>
+
+</body>
+
+</html>
